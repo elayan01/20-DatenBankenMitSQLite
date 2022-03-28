@@ -1,0 +1,54 @@
+CREATE TABLE Aktivität(Kurzbeschreibung TEXT [VARCHAR],
+OrtID Integer [NUMERIC],
+Dauer Integer [NUMERIC],
+Langbeschreibung TEXT [VARCHAR],
+PartnerBezeichnung TEXT [VARCHAR],
+PartnerTelNr TEXT [VARCHAR],
+PRIMARY KEY (Kurzbeschreibung, OrtID))
+
+
+INSERT INTO Aktivität(Kurzbeschreibung,OrtID,Dauer,Langbeschreibung,PartnerBezeichnung,PartnerTelNr)
+  VALUES 
+('Basketball',1,120,'Spiel 5 gegen 5 auf zwei Körbe','Unser Treff','0231/1122334'),
+('Basketball',3,180,'Spiel 5 gegen 5 auf zwei Körbe','TuS Brackel','0231/54613'),
+('Billard',6,120,'Ruhige Kugel? Nicht mit uns!','Köö','0231/3961333'),
+('Halloween-Basteln',2,120,'Gruselige Basteleien für Daheim!','idee kreativ','0231/789456'),
+('Kickern',1,60,'Fußball zwar in kleiner, aber oho!','Unser Treff','0231/1122334'),
+('Laser-Tag',5,240,'Aus Spaß am Töten!','BoTag','0234/95043209'),
+('Programmieren',4,240,'Programmiere einen Java-Rover und rette den Mond!','CCC','0231/1337'),
+('Schnupper-Ringen',3,180,'Ein römischer Klassiker: Ringen!','TuS Brackel','0231/54613'),
+('Stadtpflege',7,120,'Werde aktiv gegen den Müll in den Straßen!','Stadt Hagen','02334/987654')
+
+
+CREATE TABLE Fahrtroute(RouteID Integer [NUMERIC] PRIMARY KEY, 
+Beschreibung TEXT [VARCHAR],
+Dauer INTEGER[NUMERIC],
+MitBus BOOLEAN)
+
+INSERT INTO Fahrtroute(RouteID,Beschreibung,Dauer,MitBus)
+  VALUES 
+(1,'Verbleibt im Haus',0,FALSE),
+(2,'Zu Fuß in die Innenstadt [...] rechts bei Hausnummer 17.',20,FALSE),
+(3,'Zu Fuß zum Ostentor, dann U43 richtung Brackel und Haltestelle [...] links bei Hausnummer 124',25,FALSE),
+(4,'Auf die B1 Richtung Bochum [...] Hausnummer 221',35,TRUE),
+(5,'Auf die B1 Richtung Unna. [...] bei Hausnummer 107',20,TRUE),
+(6,'Zu Fuß in Richtung [...] dann bei Hausnummer 17.',10,FALSE)
+
+
+
+
+CREATE TABLE Veranstaltungsort(OrtID Integer[NUMERIC] PRIMARY KEY,
+Straße Text [VARCHAR],
+Hausnummer Text [VARCHAR],
+Stadt Text [VARCHAR],
+RouteID INTEGER [NUMERIC])
+
+INSERT INTO Veranstaltungsort(OrtID,Straße,Hausnummer,Stadt,RouteID)
+  VALUES 
+(1,'Erzbergerstraße',1,'Dortmund',1),
+(2,'Westenhellweg',17,'Dortmund',2),
+(3,'Holzwickerstr.',107,'Dortmund',5),
+(4,'Brackeler Hellweg',124,'Dortmund',3),
+(5,'Herner Str.',221,'Bochum',4),
+(6,'Erzbergerstraße',17,'Dortmund',6),
+(7,'Rathausstraße',11,'Hagen',NULL)
