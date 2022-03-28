@@ -49,8 +49,12 @@ public class MainController {
      */
     public void printLastQuery(){
         //TODO 01: siehe Kommentar
+        if(dbConnector.getCurrentQueryResult()!=null){
+            String[] name=dbConnector.getCurrentQueryResult().getColumnNames();
+            int x=dbConnector.getCurrentQueryResult().getColumnCount();
+            int b1=maxWidth(name[0],dbConnector.getCurrentQueryResult())
+        }
     }
-
 
     /**
      * Die Verbindung zur Datenbank wird geschlossen.
