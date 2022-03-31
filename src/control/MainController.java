@@ -1,6 +1,7 @@
 package control;
 
 import model.Activity;
+import model.List;
 
 public class MainController {
 
@@ -51,8 +52,45 @@ public class MainController {
         //TODO 01: siehe Kommentar
         if(dbConnector.getCurrentQueryResult()!=null){
             String[] name=dbConnector.getCurrentQueryResult().getColumnNames();
-            int x=dbConnector.getCurrentQueryResult().getColumnCount();
-            int b1=maxWidth(name[0],dbConnector.getCurrentQueryResult())
+            List breiten=new List();
+            int columnCount=dbConnector.getCurrentQueryResult().getColumnCount();
+            for (int i=0;i<columnCount;i++){
+                int breite=maxWidth(name[i],dbConnector.getCurrentQueryResult().getData(),i);
+                breiten.append(breite);
+            }
+            int z=0;
+            int x = 0;
+            String print = "|";
+            breiten.toFirst();
+            while (x < columnCount) {
+                int b = breiten.getContent().hashCode();
+                if (b > name[x].length()) {
+                    int y = (b - name[x].length()) / 2;
+                    print = print + freeSpaces(y) + name[x] + freeSpaces(y) + "|";
+                }else {
+                    print=print+name[x]+"|";
+                }
+                x++;
+                breiten.next();
+            }
+            System.out.println(print);
+            dbConnector.getCurrentQueryResult().getData();
+            while (z<dbConnector.getCurrentQueryResult().getRowCount()){
+                String p="|";
+                breiten.toFirst();
+                for (int i=0;i<columnCount;i++){
+                    int b = breiten.getContent().hashCode();
+                    if (b > dbConnector.getCurrentQueryResult().getData()[z][i].length()) {
+                        int y = (b - dbConnector.getCurrentQueryResult().getData()[z][i].length()) / 2;
+                        p = p + freeSpaces(y) + dbConnector.getCurrentQueryResult().getData()[z][i] + freeSpaces(y) + "|";
+                    }else {
+                        p=p+dbConnector.getCurrentQueryResult().getData()[z][i]+"|";
+                    }
+                    breiten.next();
+                }
+                z++;
+                System.out.println(p);
+            }
         }
     }
 
